@@ -38,33 +38,33 @@ class MarketController extends Controller
     }
 
     /**
- * Display a listing of the resource.
- *
- * @param int $categoryId
- * @return \Illuminate\Http\JsonResponse
- */
-public function getCategoryMarkets($categoryId)
-{
-    try {
-        // Retrieve all markets for the given category ID
-        $markets = Market::where('category_id', $categoryId)->get();
-        // Return a JSON response with markets as data
-        $data = $markets->map(function ($market) {
-            return (new MarketResource($market))->toArray($market, false);
-        });
-        return response()->json([
-            'status' => 'success',
-            'message' => 'Markets retrieved successfully',
-            'data' => $data
-        ]);
-    } catch (\Exception $e) {
-        // Return an error response if an exception is caught
-        return response()->json([
-            'status' => 'error',
-            'message' => $e->getMessage()
-        ], 500);
+     * Display a listing of the resource.
+     *
+     * @param int $categoryId
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getCategoryMarkets($categoryId)
+    {
+        try {
+            // Retrieve all markets for the given category ID
+            $markets = Market::where('category_id', $categoryId)->get();
+            // Return a JSON response with markets as data
+            $data = $markets->map(function ($market) {
+                return (new MarketResource($market))->toArray($market, false);
+            });
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Markets retrieved successfully',
+                'data' => $data
+            ]);
+        } catch (\Exception $e) {
+            // Return an error response if an exception is caught
+            return response()->json([
+                'status' => 'error',
+                'message' => $e->getMessage()
+            ], 500);
+        }
     }
-}
 
 
 
