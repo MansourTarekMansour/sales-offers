@@ -170,4 +170,13 @@ class MarketController extends Controller
             ], 500);
         }
     }
+
+    public function deleteAllMarketLogos()
+    {
+        Storage::deleteDirectory('public/market_logos');
+        return response()->json([
+            'status' => 'success',
+            'message' => 'All Market logos deleted successfully',
+        ]);
+    }
 }
