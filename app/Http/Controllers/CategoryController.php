@@ -44,9 +44,9 @@ class CategoryController extends Controller
      */
     public function store(CategoryRequest $request)
     {
-        
+
         try {
-            
+
             // Store image
             $image = $request->file('image')->store('public/category_images');
             // Create a new category 
@@ -145,5 +145,15 @@ class CategoryController extends Controller
                 'message' => $e->getMessage()
             ], 500);
         }
+    }
+
+    public function deleteAllCategoryImages()
+    {
+        Storage::deleteDirectory('public/category_images');
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'All category images deleted successfully',
+        ]);
     }
 }
