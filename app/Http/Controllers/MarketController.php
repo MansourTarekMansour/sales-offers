@@ -66,8 +66,6 @@ class MarketController extends Controller
         }
     }
 
-
-
     public function store(MarketRequest $request)
     {
         try {
