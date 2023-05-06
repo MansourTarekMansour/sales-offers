@@ -12,7 +12,7 @@ class CreateCategoriesTable extends Migration
             $table->id();
             $table->string('name')->unique();
             $table->text('description')->nullable();
-            $table->binary('image');
+            $table->string('image');
             $table->timestamps();
         });
     }
